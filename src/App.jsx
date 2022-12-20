@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RomanToInteger from "./components/RomanToInteger/RomanToInteger";
+import RomanInteger from "./components/RomanInteger/RomanInteger";
 // import "./App.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <h1 className="text-green-500">leetcode</h1>
-      <RomanToInteger />
+      <RomanInteger />
     </div>
   );
 }

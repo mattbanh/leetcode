@@ -3,15 +3,14 @@
 // - Keep the library as simple as possible (ie. nested objects === BAD)
 // - When approaching a problem, break down the logic and explore from multiple angles
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // - - ex. in this case I believed that ones were different from fives but in fact the logic behind roman numerals is simpler than that
-export default function RomanToInteger() {
+export default function RomanInteger() {
   const [romanValue, setRomanValue] = useState("");
   const [intValue, setIntValue] = useState("");
-  //   useEffect(() => {
-  //     console.log(intValue);
-  //   }, [intValue]);
+  const [romanError, setRomanError] = useState(false);
+  const [intError, setIntError] = useState(false);
 
   const romanToInt = (s) => {
     const romLib = {
@@ -53,28 +52,52 @@ export default function RomanToInteger() {
   return (
     <div>
       <h2>Roman To Integer</h2>
-      <form onSubmit={romanHandler}>
-        <label>
-          Roman Numeral:
-          <input
-            name="roman"
-            value={romanValue}
-            onChange={handleRomanChange}
-          ></input>
-        </label>
-        <button type="submit">Convert to Integer</button>
-      </form>
-      <form onSubmit={intHandler}>
-        <label>
-          Integer:
-          <input
-            name="integer"
-            value={intValue}
-            onChange={handleIntChange}
-          ></input>
-        </label>
-        <button type="submit">Convert to Roman Numeral</button>
-      </form>
+      <div className="flex gap-10">
+        <form
+          className="flex flex-col justify-center"
+          id="roman"
+          onSubmit={romanHandler}
+        >
+          <label>
+            Roman Numeral:
+            <input
+              name="roman"
+              value={romanValue}
+              onChange={handleRomanChange}
+            ></input>
+          </label>
+        </form>
+        <div className="flex flex-col gap-5">
+          <button
+            className="font-bold bg-slate-400 hover:bg-slate-600 py-2 px-3  rounded-md ease-in-out duration-300"
+            form="roman"
+            type="submit"
+          >
+            Convert to Integer
+          </button>
+          <button
+            className="font-bold bg-slate-400 hover:bg-slate-600 py-2 px-3  rounded-md ease-in-out duration-300"
+            form="integer"
+            type="submit"
+          >
+            Convert to Roman Numeral
+          </button>
+        </div>
+        <form
+          className="flex flex-col justify-center"
+          id="integer"
+          onSubmit={intHandler}
+        >
+          <label>
+            Integer:
+            <input
+              name="integer"
+              value={intValue}
+              onChange={handleIntChange}
+            ></input>
+          </label>
+        </form>
+      </div>
     </div>
   );
 }
