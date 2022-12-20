@@ -49,6 +49,13 @@ $ npx tailwindcss init -p
     }
 
 5.  Add Tailwind directives to index.css
+
     > @tailwind base;
     > @tailwind components;
     > @tailwind utilities;
+
+6.  Install react-router-dom
+
+```bash
+npm install react-router-dom localforage match-sorter sort-by
+```
