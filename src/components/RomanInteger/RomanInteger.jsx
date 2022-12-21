@@ -1,7 +1,10 @@
-// LESSON:
+// LESSON 13 Roman to Integer:
 // - When looping, find a way to use as simple logic as possible (ie. nested conditionals === BAD)
 // - Keep the library as simple as possible (ie. nested objects === BAD)
 // - When approaching a problem, break down the logic and explore from multiple angles
+
+// LESSON 12 Integer to Roman:
+// - For complicated conversions, it is better to have a complicated "database" or table rather than complicated if/else logic
 
 import { useState } from "react";
 
@@ -41,45 +44,19 @@ export default function RomanInteger() {
   };
 
   const intToRoman = (num) => {
-    const romLib = {
-      1: ["I", "V", "X"],
-      10: ["X", "L", "C"],
-      100: ["C", "D", "M"],
-      1000: ["M"],
-    };
+    const M = ["", "M", "MM", "MMM"];
+    const C = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+    const X = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+    const I = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
 
-    let romNum = num;
-
-    const romArr = [];
-    let romLibVal = 1;
-
-    while (romNum > 0) {
-      let digit = romNum % 10;
-
-      if (digit / 5 >= 1) {
-        digit = digit % 5;
-        if (digit === 4) {
-          romArr.unshift(romLib[romLibVal][0], romLib[romLibVal][2]);
-        } else {
-          romArr.unshift(
-            romLib[romLibVal][1],
-            romLib[romLibVal][0].repeat(digit)
-          );
-        }
-      } else {
-        if (digit === 4) {
-          romArr.unshift(romLib[romLibVal][0], romLib[romLibVal][1]);
-        } else {
-          romArr.unshift(romLib[romLibVal][0].repeat(digit));
-        }
-      }
-      romNum = Math.floor(romNum / 10);
-      romLibVal = romLibVal * 10;
-    }
-    const roman = romArr.join("");
+    const roman =
+      M[(num / 1000) | 0] +
+      C[((num % 1000) / 100) | 0] +
+      X[((num % 100) / 10) | 0] +
+      I[num % 10 | 0];
     return roman;
   };
-
+  console.log(intToRoman(3582));
   const handleIntChange = (e) => {
     const input = e.target.value;
     setIntValue(input);
@@ -143,7 +120,7 @@ export default function RomanInteger() {
   );
 }
 
-// Original Solution [SUPER SLOW]
+// Original Solution 13 [SUPER SLOW]
 // - in this case I believed that ones were different from fives but in fact the logic behind roman numerals is simpler than that
 //  //   /**
 //   //    * @param {string}
@@ -212,3 +189,44 @@ export default function RomanInteger() {
 //     }
 //     return romanInt;
 //   };
+
+// Original Solution 12 (SLOW)
+// const intToRoman = (num) => {
+//   const romLib = {
+//     1: ["I", "V", "X"],
+//     10: ["X", "L", "C"],
+//     100: ["C", "D", "M"],
+//     1000: ["M"],
+//   };
+
+//   let romNum = num;
+
+//   const romArr = [];
+//   let romLibVal = 1;
+
+//   while (romNum > 0) {
+//     let digit = romNum % 10;
+
+//     if (digit / 5 >= 1) {
+//       digit = digit % 5;
+//       if (digit === 4) {
+//         romArr.unshift(romLib[romLibVal][0], romLib[romLibVal][2]);
+//       } else {
+//         romArr.unshift(
+//           romLib[romLibVal][1],
+//           romLib[romLibVal][0].repeat(digit)
+//         );
+//       }
+//     } else {
+//       if (digit === 4) {
+//         romArr.unshift(romLib[romLibVal][0], romLib[romLibVal][1]);
+//       } else {
+//         romArr.unshift(romLib[romLibVal][0].repeat(digit));
+//       }
+//     }
+//     romNum = Math.floor(romNum / 10);
+//     romLibVal = romLibVal * 10;
+//   }
+//   const roman = romArr.join("");
+//   return roman;
+// };
