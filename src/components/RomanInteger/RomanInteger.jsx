@@ -5,7 +5,6 @@
 
 import { useState } from "react";
 
-// - - ex. in this case I believed that ones were different from fives but in fact the logic behind roman numerals is simpler than that
 export default function RomanInteger() {
   const [romanValue, setRomanValue] = useState("");
   const [intValue, setIntValue] = useState("");
@@ -40,18 +39,60 @@ export default function RomanInteger() {
     const romInt = romanToInt(e.target.roman.value);
     setIntValue(romInt);
   };
+
+  const intToRoman = (num) => {
+    const romLib = {
+      1: ["I", "V", "X"],
+      10: ["X", "L", "C"],
+      100: ["C", "D", "M"],
+      1000: ["M"],
+    };
+
+    let romNum = num;
+
+    const romArr = [];
+    let romLibVal = 1;
+
+    while (romNum > 0) {
+      let digit = romNum % 10;
+
+      if (digit / 5 >= 1) {
+        digit = digit % 5;
+        if (digit === 4) {
+          romArr.unshift(romLib[romLibVal][0], romLib[romLibVal][2]);
+        } else {
+          romArr.unshift(
+            romLib[romLibVal][1],
+            romLib[romLibVal][0].repeat(digit)
+          );
+        }
+      } else {
+        if (digit === 4) {
+          romArr.unshift(romLib[romLibVal][0], romLib[romLibVal][1]);
+        } else {
+          romArr.unshift(romLib[romLibVal][0].repeat(digit));
+        }
+      }
+      romNum = Math.floor(romNum / 10);
+      romLibVal = romLibVal * 10;
+    }
+    const roman = romArr.join("");
+    return roman;
+  };
+
   const handleIntChange = (e) => {
     const input = e.target.value;
     setIntValue(input);
   };
   const intHandler = (e) => {
     e.preventDefault();
-    const intRom = romanToInt(e.target.integer.value);
+    const intRom = intToRoman(e.target.integer.value);
+    setRomanValue(intRom);
   };
 
   return (
     <div>
-      <h2>Roman To Integer</h2>
+      <h2 className="text-xl font-bold mb-6">Roman To Integer</h2>
       <div className="flex gap-10">
         <form
           className="flex flex-col justify-center"
@@ -103,7 +144,7 @@ export default function RomanInteger() {
 }
 
 // Original Solution [SUPER SLOW]
-
+// - in this case I believed that ones were different from fives but in fact the logic behind roman numerals is simpler than that
 //  //   /**
 //   //    * @param {string}
 //   //    * @return {number}
