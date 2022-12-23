@@ -1,5 +1,7 @@
 import { useState } from "react";
 import RomanInteger from "./components/RomanInteger/RomanInteger";
+import OtherSolutions from "./solutions/OtherSolutions";
+
 // import "./App.css";
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
     <div className="p-16">
       <h1 className="text-green-500 mb-8">leetcode</h1>
       <RomanInteger />
+      <OtherSolutions />
     </div>
   );
 }

@@ -68,7 +68,7 @@ export default function RomanInteger() {
   };
 
   return (
-    <div>
+    <div className="mb-12">
       <h2 className="text-xl font-bold mb-6">Roman To Integer</h2>
       <div className="flex gap-10">
         <form
