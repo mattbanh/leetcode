@@ -1,3 +1,15 @@
+// LESSON 1480 - running sum of 1d array
+// INPUT arr = [3,1,2,10,1]
+const runningSum = (nums) => {
+  let runningArr = [];
+  let indexSum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    indexSum += nums[i];
+    runningArr.push(indexSum);
+  }
+  return runningArr;
+};
+
 // LESSON 1672 - find the highest accumulated array
 // - if/else is slow compared to built in JavaScript functions
 // - Math.max compares numbers and returns the highest
