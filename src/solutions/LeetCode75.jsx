@@ -35,6 +35,25 @@ const pivotIndex = (nums) => {
 // console.log(pivotIndex([1, 2, 3]));
 // console.log(pivotIndex([-1, -1, 0, 0, -1, -1]));
 
+// LESSON 205 - isomorphic strings
+const isIsomorphic = (s, t) => {
+  let sArr = s.split("");
+  let tArr = t.split("");
+  let sObj = {};
+  let tObj = {};
+  for (let i = 0; i < sArr.length; i++) {
+    sObj[sArr[i]] = tArr[i];
+  }
+  for (let i = 0; i < tArr.length; i++) {
+    tObj[tArr[i]] = sArr[i];
+  }
+  const sMap = sArr.map((x) => sObj[x]);
+  const tMap = tArr.map((x) => tObj[x]);
+
+  return sMap.join("") === t && tMap.join("") === s;
+};
+// console.log(isIsomorphic("foo", "bar"));
+
 export default function LeetCode75() {
   return (
     <div>
