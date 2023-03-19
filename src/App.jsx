@@ -10,10 +10,11 @@ function App() {
 
   return (
     <div className="p-16">
-      <h1 className="text-green-500 mb-8">leetcode</h1>
-      <RomanInteger />
+      <h1 className="text-green-500 ">leetcode</h1>
+      <p className="mb-8 text-xs">A project by Matt Ishii (Banh)</p>
+      {/* <RomanInteger /> */}
       <LeetCode75 />
-      <OtherSolutions />
+      {/* <OtherSolutions /> */}
     </div>
   );
 }
