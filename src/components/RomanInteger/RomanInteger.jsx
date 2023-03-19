@@ -68,7 +68,7 @@ export default function RomanInteger() {
   };
 
   return (
-    <div className="mb-12">
+    <div className="mb-12 h-96">
       <h2 className="text-xl font-bold mb-6">Roman To Integer</h2>
       <div className="flex gap-10">
         <form
@@ -79,6 +79,7 @@ export default function RomanInteger() {
           <label>
             Roman Numeral:
             <input
+              className="ml-2 border-2 rounded-md bg-slate-100 px-2 py-1"
               name="roman"
               value={romanValue}
               onChange={handleRomanChange}
@@ -109,6 +110,7 @@ export default function RomanInteger() {
           <label>
             Integer:
             <input
+              className="ml-2 border-2 rounded-md bg-slate-100 px-2 py-1"
               name="integer"
               value={intValue}
               onChange={handleIntChange}
